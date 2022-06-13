@@ -5,6 +5,8 @@ VisualStudioVersion = 17.2.32526.322
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StringMutation", "StringMutation\StringMutation.csproj", "{383CC19D-5EF9-4E58-8CDC-0C3482944A9D}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StringMutationConsole", "StringMutationConsole\StringMutationConsole.csproj", "{1101E391-4EF5-4E25-A852-17369C819536}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{383CC19D-5EF9-4E58-8CDC-0C3482944A9D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{383CC19D-5EF9-4E58-8CDC-0C3482944A9D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{383CC19D-5EF9-4E58-8CDC-0C3482944A9D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1101E391-4EF5-4E25-A852-17369C819536}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1101E391-4EF5-4E25-A852-17369C819536}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1101E391-4EF5-4E25-A852-17369C819536}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1101E391-4EF5-4E25-A852-17369C819536}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
