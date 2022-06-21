@@ -13,24 +13,27 @@
                         p[i] -= (char)('a' - 'A');
         }
 
-        public unsafe static void BrokenAsciiToUpper(this string s)
+        public unsafe static void AsciiToUpperAlt(this string s)
         {
             fixed (char* p = s)
             {
                 char* ptr = p;
-                char* end = ptr + sizeof(char) * s.Length;
+                // Pointer arithmetic
+                char* end = ptr + s.Length;
 
-                while (true) // instead of (ptr < end)
+                // Pointer comparison
+                while (ptr < end)
                 {
                     if (*ptr >= 'a' && *ptr <= 'z')
                         *ptr -= (char)('a' - 'A');
 
+                    // Pointer increment
                     ptr++;
                 }
             }
         }
 
-        public unsafe static void AlsoBrokenAsciiToUpper(this string s)
+        public unsafe static void BrokenAsciiToUpper(this string s)
         {
             char* ptr;
 

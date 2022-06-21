@@ -32,6 +32,10 @@
             sPtr->Integer = 42;
             Console.WriteLine(sPtr->Integer);
             Console.WriteLine(sPtr->Double);
+
+            // Allocate memory from call stack and return address
+            byte* byteArray = stackalloc byte[1024];
+            Guid* guidArray = stackalloc Guid[128];
         }
     }
 }
