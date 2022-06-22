@@ -1,4 +1,5 @@
-﻿using System.Runtime.InteropServices;
+﻿using MemoryManagement;
+using System.Runtime.InteropServices;
 
 using static MemoryManagement.Kernel32;
 
@@ -25,3 +26,11 @@ unsafe
 
     HeapFree(HeapHandle, 0, ptr);
 }
+
+Union u = new() { Value = 0xBEEF };
+
+Console.WriteLine($"{u.HighByte:X2}"); // Prints "BE"
+Console.WriteLine($"{u.LowByte:X2}");  // Prints "EF"
+
+ReinterpretCast c = new() { Long = 47 };
+Console.WriteLine(c.Double); // Prints "2.3E-322"
