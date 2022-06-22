@@ -9,7 +9,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "StringMutationConsole", "St
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PointerDemo", "PointerDemo\PointerDemo.csproj", "{C6014A7C-4EAC-4360-A27C-172B58069D34}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MemoryManagement", "MemoryManagement\MemoryManagement.csproj", "{65EADCE8-FD4C-4636-81F4-CA8E3FD3FCB8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MemoryManagement", "MemoryManagement\MemoryManagement.csproj", "{65EADCE8-FD4C-4636-81F4-CA8E3FD3FCB8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DisposableDemo", "DisposableDemo\DisposableDemo.csproj", "{1BFB5C29-02EA-491F-BB52-96A5792BE8C0}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +35,10 @@ Global
 		{65EADCE8-FD4C-4636-81F4-CA8E3FD3FCB8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{65EADCE8-FD4C-4636-81F4-CA8E3FD3FCB8}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{65EADCE8-FD4C-4636-81F4-CA8E3FD3FCB8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1BFB5C29-02EA-491F-BB52-96A5792BE8C0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1BFB5C29-02EA-491F-BB52-96A5792BE8C0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1BFB5C29-02EA-491F-BB52-96A5792BE8C0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1BFB5C29-02EA-491F-BB52-96A5792BE8C0}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
