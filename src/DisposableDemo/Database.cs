@@ -12,10 +12,17 @@
 
         // Look mom! No finalizer!
 
-        public unsafe void Execute(string sql)
+        public unsafe void Execute(string sql, Callback? callback = null)
         {
             // Look mom! No 'disposed' check!
-            if (Sqlite.Execute(_databaseHandle, sql, null, null, null) != 0)
+            if (Sqlite.Execute(_databaseHandle, sql, callback, null, null) != 0)
+                throw new Exception("Script execution failed.");
+        }
+
+        public unsafe void Execute(string sql, delegate* unmanaged<void*, int, byte**, byte**, int> callback)
+        {
+            // Look mom! No 'disposed' check!
+            if (Sqlite.Execute(_databaseHandle, sql, callback, null, null) != 0)
                 throw new Exception("Script execution failed.");
         }
 

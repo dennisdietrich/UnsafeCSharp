@@ -2,11 +2,11 @@
 
 namespace DisposableDemo
 {
+    public unsafe delegate int Callback(void* ptr, int columns, byte** values, byte** names);
+
     internal static class Sqlite
     {
-        internal unsafe delegate int Callback(void* ptr, int columns, out byte* values, out byte* names);
-
-        internal const string DllName = "sqlite3";
+        internal const string DllName = "sqlite3.dll";
 
         [DllImport(DllName, EntryPoint = "sqlite3_open")]
         internal static extern int Open([MarshalAs(UnmanagedType.LPUTF8Str)] string filename, out SafeDatabaseHandle pDb);
@@ -16,5 +16,8 @@ namespace DisposableDemo
 
         [DllImport(DllName, EntryPoint = "sqlite3_exec")]
         internal static unsafe extern int Execute(SafeDatabaseHandle pDb, [MarshalAs(UnmanagedType.LPUTF8Str)] string sql, Callback? callback, void* firstArg, byte** errMsg);
+
+        [DllImport(DllName, EntryPoint = "sqlite3_exec")]
+        internal static unsafe extern int Execute(SafeDatabaseHandle pDb, [MarshalAs(UnmanagedType.LPUTF8Str)] string sql, delegate* unmanaged<void*, int, byte**, byte**, int> callback, void* firstArg, byte** errMsg);
     }
 }
