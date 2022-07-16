@@ -1,4 +1,5 @@
-﻿using static CollectedCallbackDelegate.CallbackFromNative;
+﻿using CollectedCallbackDelegate;
+using static CollectedCallbackDelegate.CallbackFromNative;
 
 static void SetupAndTriggerNativeCallback()
 {
@@ -12,4 +13,15 @@ SetupAndTriggerNativeCallback();
 // Do lots of stuff here...
 GC.Collect();
 GC.WaitForPendingFinalizers();
+CallMeMaybe();
+
+// Multicast with instance methods
+Action greeters = new GreetingWriter("C#").Greet;
+greeters += new GreetingWriter(".NET").Greet;
+
+SetCallback(greeters);
+CallMeMaybe();
+
+// Callback may throw an exception
+SetCallback(() => throw new Exception("That didn't work as expected..."));
 CallMeMaybe();
