@@ -1,6 +1,8 @@
 # Build output
 [Bb]in/
 [Oo]bj/
+x64/
 
 # Private Visual Studio files
 .vs/
+*.vcxproj.user

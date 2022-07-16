@@ -4,7 +4,7 @@ namespace MemoryManagement
 {
     internal static class Kernel32
     {
-        internal const string DllName = "Kernel32";
+        internal const string DllName = "Kernel32.dll";
 
         internal static readonly IntPtr HeapHandle = GetProcessHeap();
 
