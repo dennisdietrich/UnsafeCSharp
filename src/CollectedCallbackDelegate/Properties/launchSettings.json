@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "CollectedCallbackDelegate": {
+      "commandName": "Project",
+      "nativeDebugging": true
+    }
+  }
+}
