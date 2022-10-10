@@ -4,10 +4,12 @@ namespace CollectedCallbackDelegate
 {
     internal static class CallbackFromNative
     {
-        [DllImport("CallbackFromNative.dll")]
-        internal extern static void SetCallback(Action action);
+        private const string DllName = "CallbackFromNative.dll";
 
-        [DllImport("CallbackFromNative.dll")]
-        internal extern static void CallMeMaybe();
+        [DllImport(DllName)]
+        internal static extern void SetCallback(Action action);
+
+        [DllImport(DllName)]
+        internal static extern void CallMeMaybe();
     }
 }

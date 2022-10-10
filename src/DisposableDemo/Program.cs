@@ -12,16 +12,12 @@ db.Execute(script);
 
 unsafe
 {
-    db.Execute("SELECT int_column, text_column FROM db_demo;", (void* ptr, int columns, byte** values, byte** names) =>
+    db.Execute("SELECT int_column, text_column FROM db_demo;", (_, columns, values, names) =>
     {
         for (int i = 0; i < columns; )
         {
             Console.Write($"{FromUtf8(names[i])}: {FromUtf8(values[i])}");
-
-            if (++i == columns)
-                Console.Write(Environment.NewLine);
-            else
-                Console.Write(", ");
+            Console.Write(++i == columns ? Environment.NewLine : ", ");
         }
 
         return 0;
@@ -39,17 +35,13 @@ static unsafe int PrintRow(void* ptr, int columns, byte** values, byte** names)
     for (int i = 0; i < columns;)
     {
         Console.Write($"{FromUtf8(names[i])}: {FromUtf8(values[i])}");
-
-        if (++i == columns)
-            Console.Write(Environment.NewLine);
-        else
-            Console.Write(", ");
+        Console.Write(++i == columns ? Environment.NewLine : ", ");
     }
 
     return 0;
 }
 
-unsafe static string FromUtf8(byte* pStr)
+static unsafe string FromUtf8(byte* pStr)
 {
     int length = 0;
 

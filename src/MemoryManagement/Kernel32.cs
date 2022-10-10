@@ -4,7 +4,7 @@ namespace MemoryManagement
 {
     internal static class Kernel32
     {
-        internal const string DllName = "Kernel32.dll";
+        private const string DllName = "kernel32.dll";
 
         internal static readonly IntPtr HeapHandle = GetProcessHeap();
 
@@ -12,9 +12,9 @@ namespace MemoryManagement
         internal static extern IntPtr GetProcessHeap();
 
         [DllImport(DllName)]
-        internal static unsafe extern void* HeapAlloc(IntPtr hHeap, uint dwFlags, nuint dwBytes);
+        internal static extern unsafe void* HeapAlloc(IntPtr hHeap, uint dwFlags, nuint dwBytes);
 
         [DllImport(DllName)]
-        internal static unsafe extern int HeapFree(IntPtr hHeap, uint dwFlags, void* lpMem);
+        internal static extern unsafe int HeapFree(IntPtr hHeap, uint dwFlags, void* lpMem);
     }
 }

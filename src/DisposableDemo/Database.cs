@@ -29,7 +29,7 @@
         // No need for overloads since the class is sealed.
         public void Dispose()
         {
-            if (_databaseHandle?.IsInvalid == false)
+            if (_databaseHandle.IsInvalid == false)
                 _databaseHandle.Dispose();
         }
     }

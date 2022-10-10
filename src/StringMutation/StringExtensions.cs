@@ -3,7 +3,7 @@
     public static class StringExtensions
     {
         // Method is declared unsafe
-        public unsafe static void AsciiToUpper(this string s)
+        public static unsafe void AsciiToUpper(this string s)
         {
             // Pins string and gets address of first element of char array
             fixed (char* p = s)
@@ -13,7 +13,7 @@
                         p[i] -= (char)('a' - 'A');
         }
 
-        public unsafe static void AsciiToUpperAlt(this string s)
+        public static unsafe void AsciiToUpperAlt(this string s)
         {
             fixed (char* p = s)
             {
@@ -33,7 +33,7 @@
             }
         }
 
-        public unsafe static void BrokenAsciiToUpper(this string s)
+        public static unsafe void BrokenAsciiToUpper(this string s)
         {
             char* ptr;
 
