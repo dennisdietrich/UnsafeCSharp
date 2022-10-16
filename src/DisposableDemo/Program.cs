@@ -14,13 +14,20 @@ unsafe
 {
     db.Execute("SELECT int_column, text_column FROM db_demo;", (_, columns, values, names) =>
     {
-        for (int i = 0; i < columns; )
+        try
         {
-            Console.Write($"{FromUtf8(names[i])}: {FromUtf8(values[i])}");
-            Console.Write(++i == columns ? Environment.NewLine : ", ");
-        }
+            for (int i = 0; i < columns;)
+            {
+                Console.Write($"{FromUtf8(names[i])}: {FromUtf8(values[i])}");
+                Console.Write(++i == columns ? Environment.NewLine : ", ");
+            }
 
-        return 0;
+            return ResultCode.Ok;
+        }
+        catch
+        {
+            return ResultCode.Error;
+        }
     });
 }
 
@@ -30,15 +37,22 @@ unsafe
 }
 
 [UnmanagedCallersOnly]
-static unsafe int PrintRow(void* ptr, int columns, byte** values, byte** names)
+static unsafe ResultCode PrintRow(void* ptr, int columns, byte** values, byte** names)
 {
-    for (int i = 0; i < columns;)
+    try
     {
-        Console.Write($"{FromUtf8(names[i])}: {FromUtf8(values[i])}");
-        Console.Write(++i == columns ? Environment.NewLine : ", ");
-    }
+        for (int i = 0; i < columns;)
+        {
+            Console.Write($"{FromUtf8(names[i])}: {FromUtf8(values[i])}");
+            Console.Write(++i == columns ? Environment.NewLine : ", ");
+        }
 
-    return 0;
+        return ResultCode.Ok;
+    }
+    catch
+    {
+        return ResultCode.Error;
+    }
 }
 
 static unsafe string FromUtf8(byte* pStr)
