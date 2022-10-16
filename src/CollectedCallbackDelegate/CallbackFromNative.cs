@@ -11,5 +11,8 @@ namespace CollectedCallbackDelegate
 
         [DllImport(DllName)]
         internal static extern void CallMeMaybe();
+
+        [DllImport(DllName)]
+        internal static extern void CallMeOnNewThread();
     }
 }

@@ -24,4 +24,16 @@ CallMeMaybe();
 
 // Callback may throw an exception
 SetCallback(() => throw new Exception("That didn't work as expected..."));
-CallMeMaybe();
+
+try
+{
+    CallMeMaybe();
+}
+catch (Exception e)
+{
+    Console.WriteLine($"Callback threw exception of type {e.GetType().FullName}: {e.Message}");
+}
+
+SetCallback(() => throw new Exception("That didn't work as expected..."));
+CallMeOnNewThread();
+Thread.Sleep(1000); // Yes, hacky, don't do this in production!
