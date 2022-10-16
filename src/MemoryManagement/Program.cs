@@ -34,3 +34,9 @@ Console.WriteLine($"{u.LowByte:X2}");  // Prints "EF"
 
 ReinterpretCast c = new() { Long = 47 };
 Console.WriteLine(c.Double); // Prints "2.3E-322"
+
+unsafe
+{
+    Console.WriteLine($"Size of {nameof(DefaultPackingSize)}: {sizeof(DefaultPackingSize)}");
+    Console.WriteLine($"Size of {nameof(PackingSizeFour)}:    {sizeof(PackingSizeFour)}");
+}
