@@ -7,7 +7,7 @@ How about mutating supposedly immutable strings?
 No?
 What about buffer overflows or heap corruptions?
 Learn how to do all of this in pure C#, no C or C++ required!
-In this talk, we’ll be looking at pointers, unions, unmanaged memory, implementing `IDisposable` and finalizers, and how to call native code.
+In this talk, we’ll be looking at pointers, unions, unmanaged memory, implementing `IDisposable` and finalizers, and how to call and be called by native code.
 
 --------------------------------------------------------------------------------
 
