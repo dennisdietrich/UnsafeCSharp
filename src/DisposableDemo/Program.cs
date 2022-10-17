@@ -1,4 +1,5 @@
-﻿using DisposableDemo;
+﻿using System.Runtime.CompilerServices;
+using DisposableDemo;
 using System.Runtime.InteropServices;
 using System.Text;
 
@@ -36,7 +37,7 @@ unsafe
     db.Execute("SELECT int_column, text_column FROM db_demo;", &PrintRow);
 }
 
-[UnmanagedCallersOnly]
+[UnmanagedCallersOnly(CallConvs = new[] { typeof(CallConvStdcall) })]
 static unsafe ResultCode PrintRow(void* ptr, int columns, byte** values, byte** names)
 {
     try

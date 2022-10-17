@@ -10,10 +10,17 @@ static void SetupAndTriggerNativeCallback()
 }
 
 SetupAndTriggerNativeCallback();
-// Do lots of stuff here...
 GC.Collect();
 GC.WaitForPendingFinalizers();
-CallMeMaybe();
+
+try
+{
+    CallMeMaybe();
+}
+catch (Exception e)
+{
+    Console.WriteLine("Callback threw exception of type {0}: {1}", e.GetType().FullName, e.Message);
+}
 
 // Multicast with instance methods
 Action greeters = new GreetingWriter("C#").Greet;
