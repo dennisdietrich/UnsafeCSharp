@@ -37,6 +37,38 @@ Console.WriteLine(c.Double); // Prints "2.3E-322"
 
 unsafe
 {
-    Console.WriteLine($"Size of {nameof(DefaultPackingSize)}: {sizeof(DefaultPackingSize)}");
-    Console.WriteLine($"Size of {nameof(PackingSizeFour)}:    {sizeof(PackingSizeFour)}");
+    Console.WriteLine($"Size of {nameof(DefaultPackingSize)}:  {sizeof(DefaultPackingSize)}");
+    Console.WriteLine($"Size of {nameof(PackingSizeFour)}:     {sizeof(PackingSizeFour)}");
+    Console.WriteLine($"Size of {nameof(ExplicitWithoutPack)}: {sizeof(ExplicitWithoutPack)}");
+    Console.WriteLine($"Size of {nameof(ExplicitWithPack)}:    {sizeof(ExplicitWithPack)}");
+
+    var defaultPack = new DefaultPackingSize();
+    Console.WriteLine();
+    Console.WriteLine($"Offset {nameof(DefaultPackingSize)}.{nameof(DefaultPackingSize.B1)}: {(int)(&defaultPack.B1 - &defaultPack.B1)}");
+    Console.WriteLine($"Offset {nameof(DefaultPackingSize)}.{nameof(DefaultPackingSize.B2)}: {(int)(&defaultPack.B2 - &defaultPack.B1)}");
+    Console.WriteLine($"Offset {nameof(DefaultPackingSize)}.{nameof(DefaultPackingSize.L)}:  {(int)((byte*)&defaultPack.L - &defaultPack.B1)}");
+
+    var sizeFour = new PackingSizeFour();
+    Console.WriteLine();
+    Console.WriteLine($"Offset {nameof(PackingSizeFour)}.{nameof(PackingSizeFour.B1)}: {(int)(&sizeFour.B1 - &sizeFour.B1)}");
+    Console.WriteLine($"Offset {nameof(PackingSizeFour)}.{nameof(PackingSizeFour.B2)}: {(int)(&sizeFour.B2 - &sizeFour.B1)}");
+    Console.WriteLine($"Offset {nameof(PackingSizeFour)}.{nameof(PackingSizeFour.L)}:  {(int)((byte*)&sizeFour.L - &sizeFour.B1)}");
+
+    var withoutPack = new ExplicitWithoutPack();
+    Console.WriteLine();
+    Console.WriteLine($"Offset {nameof(ExplicitWithoutPack)}.{nameof(ExplicitWithoutPack.B)}: {(int)(&withoutPack.B - &withoutPack.B)}");
+    Console.WriteLine($"Offset {nameof(ExplicitWithoutPack)}.{nameof(ExplicitWithoutPack.I)}: {(int)((byte*)&withoutPack.I - &withoutPack.B)}");
+    Console.WriteLine($"Offset {nameof(ExplicitWithoutPack)}.{nameof(ExplicitWithoutPack.L)}: {(int)((byte*)&withoutPack.L - &withoutPack.B)}");
+
+    var withPack = new ExplicitWithPack();
+    Console.WriteLine();
+    Console.WriteLine($"Offset {nameof(ExplicitWithPack)}.{nameof(ExplicitWithPack.B)}: {(int)(&withPack.B - &withPack.B)}");
+    Console.WriteLine($"Offset {nameof(ExplicitWithPack)}.{nameof(ExplicitWithPack.I)}: {(int)((byte*)&withPack.I - &withPack.B)}");
+    Console.WriteLine($"Offset {nameof(ExplicitWithPack)}.{nameof(ExplicitWithPack.L)}: {(int)((byte*)&withPack.L - &withPack.B)}");
+
+    var withoutPackArr = stackalloc ExplicitWithoutPack[2];
+    var withPackArr = stackalloc ExplicitWithPack[2];
+    Console.WriteLine();
+    Console.WriteLine($"Offset second {nameof(ExplicitWithoutPack)} element: {(int)((byte*)&withoutPackArr[1] - (byte*)&withoutPackArr[0])}");
+    Console.WriteLine($"Offset second {nameof(ExplicitWithPack)} element: {(int)((byte*)&withPackArr[1] - (byte*)&withPackArr[0])}");
 }

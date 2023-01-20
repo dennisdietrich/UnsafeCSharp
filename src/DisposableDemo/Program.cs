@@ -37,7 +37,7 @@ unsafe
     db.Execute("SELECT int_column, text_column FROM db_demo;", &PrintRow);
 }
 
-[UnmanagedCallersOnly(CallConvs = new[] { typeof(CallConvStdcall) })]
+[UnmanagedCallersOnly(CallConvs = new[] { typeof(CallConvCdecl) })]
 static unsafe ResultCode PrintRow(void* ptr, int columns, byte** values, byte** names)
 {
     try
