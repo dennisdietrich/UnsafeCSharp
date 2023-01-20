@@ -37,5 +37,20 @@
             byte* byteArray = stackalloc byte[1024];
             Guid* guidArray = stackalloc Guid[128];
         }
+
+        public static unsafe void ManagedTypePointer()
+        {
+            var managed = new ManagedType();
+            fixed (ushort* fieldPtr = &managed.Value)
+            {
+                ManagedType* objPtr = &managed;
+                Console.WriteLine($"Ref address:    {(nuint)objPtr:X16}");
+                Console.WriteLine($"Object address: {(nuint)(*(nuint**)objPtr):X16}");
+                Console.WriteLine($"Field address:  {(nuint)fieldPtr:X16}");
+                Console.WriteLine($"Field offset:   {(nuint)((byte*)fieldPtr - *(byte**)objPtr),16:X1}");
+                Console.WriteLine($"Calculated:     {(ulong)(*(byte**)objPtr + sizeof(nint)):X16}");
+                Console.WriteLine($"{*(ushort*)(*(byte**)objPtr + sizeof(nint)):X4}");
+            }
+        }
     }
 }
