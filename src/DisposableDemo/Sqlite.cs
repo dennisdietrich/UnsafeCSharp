@@ -18,6 +18,6 @@ namespace DisposableDemo
         internal static extern unsafe int Execute(SafeDatabaseHandle pDb, [MarshalAs(UnmanagedType.LPUTF8Str)] string sql, Callback? callback, void* firstArg, byte** errMsg);
 
         [DllImport(DllName, EntryPoint = "sqlite3_exec")]
-        internal static extern unsafe int Execute(SafeDatabaseHandle pDb, [MarshalAs(UnmanagedType.LPUTF8Str)] string sql, delegate* unmanaged[Stdcall]<void*, int, byte**, byte**, ResultCode> callback, void* firstArg, byte** errMsg);
+        internal static extern unsafe int Execute(SafeDatabaseHandle pDb, [MarshalAs(UnmanagedType.LPUTF8Str)] string sql, delegate* unmanaged[Cdecl]<void*, int, byte**, byte**, ResultCode> callback, void* firstArg, byte** errMsg);
     }
 }

@@ -19,7 +19,7 @@
                 throw new Exception("Script execution failed.");
         }
 
-        public unsafe void Execute(string sql, delegate* unmanaged[Stdcall]<void*, int, byte**, byte**, ResultCode> callback)
+        public unsafe void Execute(string sql, delegate* unmanaged[Cdecl]<void*, int, byte**, byte**, ResultCode> callback)
         {
             // Look mom! No 'disposed' check!
             if (Sqlite.Execute(_databaseHandle, sql, callback, null, null) != 0)
