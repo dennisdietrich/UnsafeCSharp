@@ -9,3 +9,6 @@ x64/
 
 # Private Rider files
 .idea/
+
+# macOS Finder
+.DS_Store
