@@ -1,4 +1,6 @@
-﻿using MemoryManagement;
+﻿#define EXPLICIT_NO_PACK
+
+using MemoryManagement;
 using System.Runtime.InteropServices;
 
 using static MemoryManagement.Kernel32;
@@ -27,6 +29,7 @@ unsafe
     HeapFree(HeapHandle, 0, ptr);
 }
 
+#if UNION
 Union u = new() { Value = 0xBEEF };
 
 Console.WriteLine($"{u.HighByte:X2}"); // Prints "BE"
@@ -34,7 +37,9 @@ Console.WriteLine($"{u.LowByte:X2}");  // Prints "EF"
 
 ReinterpretCast c = new() { Long = 47 };
 Console.WriteLine(c.Double); // Prints "2.3E-322"
+#endif
 
+#if PACKING
 unsafe
 {
     Console.WriteLine($"Size of {nameof(DefaultPackingSize)}:  {sizeof(DefaultPackingSize)}");
@@ -72,3 +77,23 @@ unsafe
     Console.WriteLine($"Offset second {nameof(ExplicitWithoutPack)} element: {(int)((byte*)&withoutPackArr[1] - (byte*)&withoutPackArr[0])}");
     Console.WriteLine($"Offset second {nameof(ExplicitWithPack)} element: {(int)((byte*)&withPackArr[1] - (byte*)&withPackArr[0])}");
 }
+#endif
+
+#if EXPLICIT_NO_PACK || EXPLICIT_PACK
+unsafe
+{
+#if EXPLICIT_NO_PACK
+    var packStruct = new ExplicitWithoutPack();
+    var size = sizeof(ExplicitWithoutPack);
+#elif EXPLICIT_PACK
+    var packStruct = new ExplicitWithPack();
+    var size = sizeof(ExplicitWithPack);
+#endif
+    var baseAddr = &packStruct;
+    Console.WriteLine($"Type:      {packStruct.GetType().Name}");
+    Console.WriteLine($"Size:      {size}");
+    Console.WriteLine($"Offsize B:  {(nuint)(&packStruct.B) - (nuint)baseAddr}");
+    Console.WriteLine($"Offsize I:  {(nuint)(&packStruct.I) - (nuint)baseAddr}");
+    Console.WriteLine($"Offsize L:  {(nuint)(&packStruct.L) - (nuint)baseAddr}");
+}
+#endif
