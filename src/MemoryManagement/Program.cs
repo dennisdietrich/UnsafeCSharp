@@ -90,10 +90,10 @@ unsafe
     var size = sizeof(ExplicitWithPack);
 #endif
     var baseAddr = &packStruct;
-    Console.WriteLine($"Type:      {packStruct.GetType().Name}");
-    Console.WriteLine($"Size:      {size}");
-    Console.WriteLine($"Offsize B:  {(nuint)(&packStruct.B) - (nuint)baseAddr}");
-    Console.WriteLine($"Offsize I:  {(nuint)(&packStruct.I) - (nuint)baseAddr}");
-    Console.WriteLine($"Offsize L:  {(nuint)(&packStruct.L) - (nuint)baseAddr}");
+    Console.WriteLine($"Type:     {packStruct.GetType().Name}");
+    Console.WriteLine($"Size:     {size}");
+    Console.WriteLine($"Offset B:  {(nuint)(&packStruct.B) - (nuint)baseAddr}");
+    Console.WriteLine($"Offset I:  {(nuint)(&packStruct.I) - (nuint)baseAddr}");
+    Console.WriteLine($"Offset L:  {(nuint)(&packStruct.L) - (nuint)baseAddr}");
 }
 #endif
